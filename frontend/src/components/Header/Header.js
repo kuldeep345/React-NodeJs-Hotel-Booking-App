@@ -8,6 +8,9 @@ import { Calendar , DateRange } from 'react-date-range';
 import { useState } from 'react'
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import searchContext from '../../context/searchContext/SearchContext'
+import AuthContext from '../../context/AuthContext/authContext'
 
 const Header = ({type}) => {
     
@@ -21,6 +24,8 @@ const Header = ({type}) => {
             key: 'selection',
         }
     ])
+
+    const { state:{user } } = useContext(AuthContext)
 
     const [openOptions , setOpenOptions] = useState(false)
     const [options , setOptions] = useState({
@@ -36,7 +41,10 @@ const Header = ({type}) => {
         })
     }
 
+    const { state , dispatch } = useContext(searchContext)
+
     const handleSearch = async()=>{
+        dispatch({type:"NEW_SEARCH" ,  payload:{destination, date , options}})
         navigate("/hotels" , {state:{destination , date , options}})
     }
 
@@ -71,7 +79,7 @@ const Header = ({type}) => {
             <p className="headerDesc">
                 Get rewarded for your travels - unlock instant savings of 10% or more with a free Lamabooking account
             </p>
-            <button className='headerBtn'>Sign in / Register</button>
+           {!user && <button className='headerBtn'>Sign in / Register</button>}
             <div className="headerSearch">
                 <div className="headerSearchItem">
                     <FaBed className='headerIcon'/>

@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 const connect = async () => {
     try {
@@ -23,6 +24,7 @@ mongoose.connection.on("connected" , async()=>{
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors())
 
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/hotel', require('./routes/hotels'))
