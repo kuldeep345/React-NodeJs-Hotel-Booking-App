@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { FaFontAwesome } from 'react-icons/fa' 
 import './reserve.css'
 import {AiFillCloseCircle} from 'react-icons/ai'
 import {baseUrl} from '../../constants/baseUrl'
 import useFetch from '../../hooks/useFetch'
 import searchContext from '../../context/searchContext/SearchContext'
+import './reserve.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Reserve = ({setOpenModal , hotelId}) => {
 
@@ -29,8 +31,14 @@ const Reserve = ({setOpenModal , hotelId}) => {
         return dates
     }
 
+    const navigate = useNavigate()
 
    const alldates = getDatesInRange(date[0].startDate , date[0].endDate)
+
+   const isAvailable = (roomNumber) => {
+    const isFound = roomNumber.unavailableDates.some((date) => alldates.includes(new Date(date).getTime()))
+    return !isFound
+   }
 
     const handleSelect = (e)=>{
         const checked = e.target.checked
@@ -39,18 +47,29 @@ const Reserve = ({setOpenModal , hotelId}) => {
         setSelectedRooms(checked ? [...selectedRooms , value] : selectedRooms.filter((item) => item !== value))
     }
 
-    const handleClick = ()=>{
+    const handleClick = async ()=>{
+        try { 
+            await Promise.all(selectedRooms.map(roomId => {
+            const res = axios.put(`${baseUrl}/rooms/availability/${roomId}`,{dates:alldates})
 
+            return res.data
+            }))
+            setOpenModal(false)
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
   return (
     <div className='reserve'>
-        <div className="rContainer">
-            <FaFontAwesome
-            icon={AiFillCloseCircle}
+        <div className='reservediv'>
+        <AiFillCloseCircle
             className="rClose"
             onClick={()=>setOpenModal(false)}
             />
+        <div className="rContainer">
+           
             <span>Select your rooms:</span>
             {data.map(item => (
                 <div className="ritem">
@@ -60,15 +79,20 @@ const Reserve = ({setOpenModal , hotelId}) => {
                         <div className="rMax">Max people: <b>{item.maxPeople}</b></div>
                         <div className="rPrice">{item.price}</div>
                     </div>
+                    <div className='rSelectedRooms'>
                     {item.roomNumbers.map((roomNumber)=>(
                         <div className="room">
-                        <label>{item.number}</label>
-                        <input type="checkbox" value={roomNumber._id} onChange={handleSelect}/>
+                        <label>{roomNumber.number}</label>
+                        <input disabled={!isAvailable(roomNumber)} type="checkbox" value={roomNumber._id} onChange={handleSelect}/>
                     </div>
                     ))}
+                    </div>
+                  
                 </div>
             ))}
-            <button onClick={handleClick} className="rButton">Reserve Now!</button>
+         
+        </div>
+        <button onClick={handleClick} className="rButton">Reserve Now!</button>
         </div>
     </div>
   )

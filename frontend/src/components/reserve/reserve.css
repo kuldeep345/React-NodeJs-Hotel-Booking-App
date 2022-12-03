@@ -1,0 +1,92 @@
+.reserve{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.418);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.reservediv{
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    height: 70vh;
+    padding: 20px;
+    padding-bottom: 40px;
+
+}
+
+.rContainer{
+
+    overflow-x: auto;
+    overflow-y: scroll;
+    background-color: white;
+ 
+    overflow: scroll;
+    position: relative;
+    height: 65vh;
+  
+}
+
+.rClose{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    font-size: 26px;
+    z-index: 20;
+}
+
+.ritem{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+}
+
+.ritemInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rTitle{
+    font-weight: 500;
+}
+
+.rDesc{
+    font-weight: 300;
+}
+
+.rMax{
+    font-size: 12px;
+}
+
+.rPrice{
+    font-size: 500;
+}
+
+.rSelectedRooms{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 8px;
+    color: gray;
+}
+
+.rButton{
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+}
