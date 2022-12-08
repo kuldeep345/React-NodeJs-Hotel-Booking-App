@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import 'react-circular-progressbar/dist/styles.css';
-import { DarkModeContextProvider } from './context/darkModeReducer';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { DarkModeContextProvider } from "./context/darkModeContext";
+import {AuthContextProvider} from './context/AuthContext/authState'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <DarkModeContextProvider>
-    <App />
+      <AuthContextProvider>
+      <App />
+      </AuthContextProvider>
     </DarkModeContextProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

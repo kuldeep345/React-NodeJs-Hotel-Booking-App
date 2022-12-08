@@ -1,38 +1,53 @@
-import React from 'react'
-import './home.scss'
-import Sidebar from '../../components/sidebar/Sidebar'
-import Navbar from '../../components/navbar/Navbar'
-import Widget from '../../components/widget/Widget'
-import Chart from '../../components/chart/Chart'
-import Featured from '../../components/featured/Featured.jsx'
-import Table from '../../components/table/Table'
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import "./home.scss";
+import Widget from "../../components/widget/Widget";
+import Featured from "../../components/featured/Featured";
+import Chart from "../../components/chart/Chart";
+import Table from "../../components/table/Table";
+import { useNavigate } from 'react-router-dom'
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext/authContext";
+import { useEffect } from "react";
 
 const Home = () => {
+
+  const navigate = useNavigate()
+  const { state:{user} } = useContext(AuthContext)
+
+  useEffect(() => {
+
+  if(!user || user === null){
+    navigate('/login')
+    return null
+  }  
+
+  }, [user])
+  
+
+
   return (
-    <div className='home'>
-        <Sidebar/>
-        <div className="homeContainer">
-          <Navbar/>
-          <div className="widgets">
-            <Widget type="user"/>
-            <Widget type="order"/>
-            <Widget type="earning"/>
-            <Widget type="balance"/>
-          </div>
-          <div className="charts">
-            <Featured/>
-            <Chart aspect={2/1} title="Last 6 Months (Revenue)"/>
-          </div>
-
-          <div className="listContainer">
-            <div className="listTitle">Latest Transactions</div>
-            <Table/>
-          </div>
-
+    <div className="home">
+      <Sidebar />
+      <div className="homeContainer">
+        <Navbar />
+        <div className="widgets">
+          <Widget type="user" />
+          <Widget type="order" />
+          <Widget type="earning" />
+          <Widget type="balance" />
         </div>
+        <div className="charts">
+          <Featured />
+          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+        </div>
+        <div className="listContainer">
+          <div className="listTitle">Latest Transactions</div>
+          <Table />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-
-export default Home
+export default Home;

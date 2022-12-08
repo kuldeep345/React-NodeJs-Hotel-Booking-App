@@ -7,9 +7,9 @@ export const userInputs = [
     },
     {
       id: 2,
-      label: "Name and surname",
+      label: "City",
       type: "text",
-      placeholder: "John Doe",
+      placeholder: "New York",
     },
     {
       id: 3,
@@ -42,36 +42,54 @@ export const userInputs = [
     },
   ];
   
-  export const productInputs = [
+  export const hotelInputs = [
     {
       id: 1,
-      label: "Title",
+      label: "Name",
       type: "text",
-      placeholder: "Apple Macbook Pro",
+      placeholder: "My Hotel",
     },
     {
       id: 2,
-      label: "Description",
+      label: "Type",
       type: "text",
-      placeholder: "Description",
+      placeholder: "hotel",
     },
     {
       id: 3,
-      label: "Category",
+      label: "Address",
       type: "text",
-      placeholder: "Computers",
+      placeholder: "elton st.126",
     },
     {
       id: 4,
-      label: "Price",
+      label: "Title",
+      type: "text",
+      placeholder: "The best Hotel",
+    },
+    {
+      id: 5,
+      label: "CheapestPrice",
       type: "text",
       placeholder: "100",
     },
     {
-      id: 5,
-      label: "Stock",
+      id: 6,
+      label: "City",
       type: "text",
-      placeholder: "in stock",
+      placeholder: "100",
+    },
+    {
+      id: 7,
+      label: "Distance",
+      type: "text",
+      placeholder: "100",
+    },
+    {
+      id: 8,
+      label: "Desc",
+      type: "text",
+      placeholder: "description",
     },
   ];
   

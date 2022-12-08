@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const {createError } = require('../utils/error')
 
 exports.verifyToken = (req,res,next) => {
-    const token = req.cookies.access_token
+    const token = req.cookies.token
 
     if(!token){
         return next(createError(401, "you are not authenticated"))
@@ -19,7 +19,7 @@ exports.verifyToken = (req,res,next) => {
 
 exports.verifyUser = async(req,res,next)=>{
 
-    const token = req.cookies.access_token
+    const token = req.headers.token
 
     if(!token){
         return next(createError(401, "you are not authenticated"))
@@ -43,7 +43,7 @@ exports.verifyUser = async(req,res,next)=>{
 
 exports.verifyAdmin = async(req,res,next)=>{
   
-    const token = req.cookies.access_token
+    const token = req.headers.token
 
     if(!token){
         return next(createError(401, "you are not authenticated"))

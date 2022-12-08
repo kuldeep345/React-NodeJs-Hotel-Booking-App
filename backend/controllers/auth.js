@@ -15,10 +15,8 @@ exports.register = async(req,res,next)=>{
         const hash = await bcrypt.hashSync(req.body.password , salt)
 
         const newUser = await new User({
-            username:req.body.username,
-            email:req.body.email,
-            password:hash,
-            isAdmin:req.body.isAdmin
+           ...req.body,
+            password:hash
         })
 
         await newUser.save()
@@ -35,6 +33,7 @@ exports.login = async (req,res,next) => {
 
        if(!user){
         next(createError(400, "Invalid credentials"))
+        return
        }
 
        const isPasswordCorrect = await bcrypt.compare(req.body.password , user.password)
@@ -47,9 +46,7 @@ exports.login = async (req,res,next) => {
 
        const { password , isAdmin, ...otherDetails } = user._doc
 
-       res.cookie("access_token", token ,{
-        httpOnly:true
-       }).status(200).json({otherDetails , token})
+       res.status(200).json({otherDetails , isAdmin, token})
 
 
     } catch (error) {

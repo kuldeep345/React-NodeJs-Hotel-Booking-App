@@ -1,53 +1,11 @@
-import "./new.scss";
+import "./newRoom.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import axios from 'axios'
-import { baseUrl } from "../../constants/baseUrl";
 
-const New = ({ inputs, title }) => {
+const NewRoom = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-  const [info , setInfo] = useState({
-
-  })
-
-  console.log(info)
-
-  const handleOnChange = (e)=>{
-    setInfo({
-      ...info,
-      [e.target.id] : e.target.value
-    })
-  }
-
-  const handleClick = async(e)=>{
-    e.preventDefault()
-    const data = new FormData()
-    data.append("file" , file)
-    data.append("upload_preset" , "upload")
-
-    try {
-      const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dl0hl1nj1/image/upload" , data)
-      
-      const { url } = uploadRes.data
-
-      const newUser = {
-        ...info,
-        img:url
-      }
-
-      console.log(newUser)
-
-      await axios.post(`${baseUrl}/auth/register` , newUser)
-
-      setInfo({})
-
-    } catch (error) {
-        console.log(error)
-    } 
-
-  }
 
   return (
     <div className="new">
@@ -85,10 +43,10 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} id={input.label.toLowerCase()}  onChange={handleOnChange} placeholder={input.placeholder} />
+                  <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button onClick={handleClick}>Send</button>
+              <button>Send</button>
             </form>
           </div>
         </div>
@@ -97,4 +55,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default NewRoom;

@@ -27,7 +27,7 @@ app.use(cookieParser())
 app.use(cors())
 
 app.use('/api/auth', require('./routes/auth'))
-app.use('/api/hotel', require('./routes/hotels'))
+app.use('/api/hotels', require('./routes/hotels'))
 app.use('/api/users', require('./routes/users'))
 app.use('/api/rooms', require('./routes/rooms'))
 

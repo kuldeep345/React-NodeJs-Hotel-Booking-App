@@ -6,8 +6,13 @@ import PropertyList from '../../components/propertyList/PropertyList'
 import FeaturedProperties from '../../components/featuredProperties/FeaturedProperties'
 import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
+import { useContext } from 'react'
+import AuthContext from '../../context/AuthContext/authContext'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+
+
   return (
     <div>
       <Navbar/>
