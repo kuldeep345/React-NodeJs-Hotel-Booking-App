@@ -93,3 +93,34 @@ export const userInputs = [
     },
   ];
   
+
+  export const roomInputs = [
+    {
+      id:1,
+      label: "Desc",
+      type: "text",
+      text:"desc",
+      placeholder: "description",
+    },
+    {
+      id:2,
+      label:"Max People",
+      type:"text",
+      text:"maxPeople",
+      placeholder:"2"
+    },
+    {
+      id:3,
+      label:"Title",
+      type:"text",
+      text:"title",
+      placeholder:"Best hotel"
+    },
+    {
+      id:4,
+      label:"Price",
+      type:"text",
+      text:"price",
+      placeholder:"100"
+    }
+  ]

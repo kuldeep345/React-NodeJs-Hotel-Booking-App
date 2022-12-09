@@ -84,7 +84,7 @@ exports.countByType = async(req,res,next)=>{
             {type:'cabin', count:cabinCount},
         ])
 
-        const list = await Promise.all()
+        
     } catch (error) {
         next(error)
     }

@@ -24,7 +24,7 @@ const List = () => {
  
 
 
-  const  {data , loading , error , refetch} = useFetch(`${baseUrl}/hotel?city=${destination}&min=${max || 0}&max=${min || 999}`)
+  const  {data , loading , error , refetch} = useFetch(`${baseUrl}/hotels?city=${destination}&min=${max || 0}&max=${min || 999}`)
 
   const {dispatch} = useContext(searchContext)
 

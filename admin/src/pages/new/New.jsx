@@ -5,14 +5,16 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import axios from 'axios'
 import { baseUrl } from "../../constants/baseUrl";
+import { userInputs } from "../../formSource";
+
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-  const [info , setInfo] = useState({
-
-  })
+  const [info , setInfo] = useState({})
 
   console.log(info)
+
+ 
 
   const handleOnChange = (e)=>{
     setInfo({
@@ -82,7 +84,7 @@ const New = ({ inputs, title }) => {
                 />
               </div>
 
-              {inputs.map((input) => (
+              {userInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input type={input.type} id={input.label.toLowerCase()}  onChange={handleOnChange} placeholder={input.placeholder} />

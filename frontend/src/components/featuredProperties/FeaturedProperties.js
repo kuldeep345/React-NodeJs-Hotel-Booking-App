@@ -4,7 +4,7 @@ import { baseUrl } from '../../constants/baseUrl'
 
 const FeaturedProperties = () => {
 
-    const { data , loading , error} = useFetch(`${baseUrl}/hotel?/featured=true&limit=4`)
+    const { data , loading , error} = useFetch(`${baseUrl}/hotels?/featured=true&limit=4`)
 
     
 

@@ -1,9 +1,10 @@
+import { baseUrl } from '../../constants/baseUrl'
 import useFetch from '../../hooks/useFetch'
 import './feature.css'
 
 const Feature = () => {
 
-  const { data , loading , error } = useFetch("/hotel/countByCity?cities=berlin,dublin,austin")
+  const { data , loading , error } = useFetch(`${baseUrl}/hotels/countByCity?cities=berlin,dublin,austin`)
 
 
   return (

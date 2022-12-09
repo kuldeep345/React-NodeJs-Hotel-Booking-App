@@ -36,7 +36,7 @@ const Hotel = () => {
          var result = difff / 86400000 ;  
   
     
-    const { data , loading , error } = useFetch(`${baseUrl}/hotel/find/${id[id.length-1]}`)
+    const { data , loading , error } = useFetch(`${baseUrl}/hotels/find/${id[id.length-1]}`)
   const handleOpen = (i)=>{
     setSlideNumber(i)
     setOpen(true)

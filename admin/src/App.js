@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { hotelColumns, roomColumn, userColumns } from "./datatablesource";
 import NewHotel from "./pages/newHotel/NewHotel";
+import NewRoom from "./pages/newRoom/NewRoom";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -42,7 +43,7 @@ function App() {
               <Route path=":roomId" element={<Single />} />
               <Route
                 path="new"
-                element={<New title="Add New Room" />}
+                element={<NewRoom title="Add New Room" />}
               />
           </Route>
           </Route>
